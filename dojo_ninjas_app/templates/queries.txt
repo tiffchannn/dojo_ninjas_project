@@ -1,0 +1,71 @@
+>>> totoro = Dojo.objects.create(name="Totoro", city="Los Angeles", state="CA")
+
+>>> kiki = Dojo.objects.create(name="Kiki", city="Seattle", state="WA")
+
+>>> luna = Dojo.objects.create(name="Luna", city="Nashville", state="TN")
+
+>>> delete1 = Dojo.objects.get(id=1)
+>>> delete1.delete()
+(1, {'dojo_ninjas_app.Ninja': 0, 'dojo_ninjas_app.Dojo': 1})
+
+
+>>> Dojo.objects.all()
+<QuerySet [<Dojo: Dojo object (2)>, <Dojo: Dojo object (3)>]>
+
+>>> delete2 = Dojo.objects.get(id=2)
+>>> delete2.delete()
+(1, {'dojo_ninjas_app.Ninja': 0, 'dojo_ninjas_app.Dojo': 1})
+
+>>> delete3 = Dojo.objects.get(id=3)
+>>> delete3.delete()
+(1, {'dojo_ninjas_app.Ninja': 0, 'dojo_ninjas_app.Dojo': 1})
+
+>>> print(stephanie.id)
+4
+>>> print(ashley.id)
+5
+>>> print(lily.id)
+6
+
+
+Dojos -
+stephanie = Dojo.objects.create(name="Stephanie", city="Los Angeles", state="CA") --> ID = 4
+ashley = Dojo.objects.create(name="Ashley", city="Seattle", state="WA") --> ID = 5
+lily = Dojo.objects.create(name="Lily", city="Chino", state="CA") --> ID = 6
+
+dojo1 = Dojo.objects.get(id=4)
+dojo2 = Dojo.objects.get(id=5)
+dojo3 = Dojo.objects.get(id=6)
+
+Ninga -> Dojo 1
+james = Ninja.objects.create(dojo_id=dojo1, first_name="James", last_name="Son")
+alicia = Ninja.objects.create(dojo_id=dojo1, first_name="Alicia", last_name="Nasution")
+robbyn = Ninja.objects.create(dojo_id=dojo1, first_name="Robbyn", last_name="Ayala")
+
+Ninja -> Dojo 2
+tiffany = Ninja.objects.create(dojo_id=dojo2,first_name="Tiffany", last_name="Chan")
+bailey = Ninja.objects.create(dojo_id=dojo2, first_name="Bailey", last_name="Cheung")
+patrick = Ninja.objects.create(dojo_id=dojo2, first_name="Patrick", last_name="Cam")
+
+Ninja -> Dojo 3
+kevin = Ninja.objects.create(dojo_id=dojo3,first_name="Kevin", last_name="Hoang")
+jasmine = Ninja.objects.create(dojo_id=dojo3, first_name="Jasmine", last_name="Rodriguez")
+hennessy = Ninja.objects.create(dojo_id=dojo3, first_name="Hennessy", last_name="Nguyen")
+
+Query: Retrieve all the ninjas from the first dojo
+  >>> dojo1_ninjas = Ninja.objects.filter(dojo_id_id = 4)
+  >>> for ninja in dojo1_ninjas:
+  ...     print(ninja.first_name)
+
+Query: Retrieve all the ninjas from the last dojo
+  dojo3_ninjas = Ninja.objects.filter(dojo_id_id = 6)
+  >>> for ninja in dojo3_ninjas:
+  ...     print(ninja.first_name)
+
+
+Retrieve the last ninja's dojo
+  >>> lastDojo = Dojo.objects.last()
+
+
+Create new dojo
+silver = Dojo.objects.create(name="Silver", city="Malibu", state="CA", desc="beach dojo")
